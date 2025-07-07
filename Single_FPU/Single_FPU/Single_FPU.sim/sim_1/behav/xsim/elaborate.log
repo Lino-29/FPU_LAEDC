@@ -1,62 +1,13 @@
-Vivado Simulator v2022.2
-Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot FPU_tb_behav xil_defaultlib.FPU_tb xil_defaultlib.glbl -log elaborate.log 
+Vivado Simulator v2024.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot FPU_tb_behav xil_defaultlib.FPU_tb xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 10 differs from formal bit length 8 for port 'e' [C:/Users/dell/Documents/SysG/Single_FPU/Single_FPU/Single_FPU.srcs/sources_1/new/mul_div.v:55]
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 24 for port 'quotient' [C:/Users/dell/Documents/SysG/Single_FPU/Single_FPU/Single_FPU.srcs/sources_1/new/mul_div.v:71]
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 24 for port 'fractional' [C:/Users/dell/Documents/SysG/Single_FPU/Single_FPU/Single_FPU.srcs/sources_1/new/mul_div.v:72]
-WARNING: [VRFC 10-3091] actual bit length 10 differs from formal bit length 8 for port 'exponent_add' [C:/Users/dell/Documents/SysG/Single_FPU/Single_FPU/Single_FPU.srcs/sources_1/new/mul_div.v:94]
+WARNING: [VRFC 10-3091] actual bit length 10 differs from formal bit length 8 for port 'e' [C:/Users/linor/Documents/Maestria/DigitalSystemsDesign/Proyecto_articulo/Single_FPU/Single_FPU/Single_FPU.srcs/sources_1/new/mul_div.v:55]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 24 for port 'quotient' [C:/Users/linor/Documents/Maestria/DigitalSystemsDesign/Proyecto_articulo/Single_FPU/Single_FPU/Single_FPU.srcs/sources_1/new/mul_div.v:71]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 24 for port 'fractional' [C:/Users/linor/Documents/Maestria/DigitalSystemsDesign/Proyecto_articulo/Single_FPU/Single_FPU/Single_FPU.srcs/sources_1/new/mul_div.v:72]
+WARNING: [VRFC 10-3091] actual bit length 10 differs from formal bit length 8 for port 'exponent_add' [C:/Users/linor/Documents/Maestria/DigitalSystemsDesign/Proyecto_articulo/Single_FPU/Single_FPU/Single_FPU.srcs/sources_1/new/mul_div.v:94]
 Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.sign_logic(EXP_BITS_SL=32)
-Compiling module xil_defaultlib.exponent_sub_upd
-Compiling module xil_defaultlib.mantissa_shifter
-Compiling module xil_defaultlib.mantissa_add_sub
-Compiling module xil_defaultlib.normalize_rounder
-Compiling module xil_defaultlib.add_sub_main
-Compiling module xil_defaultlib.sign_logic_muldiv
-Compiling module xil_defaultlib.exponent_logic
-Compiling module xil_defaultlib.flipflop
-Compiling module xil_defaultlib.shift(DELAY=1)
-Compiling module xil_defaultlib.parallel_shift(DELAY=1,WIDTH=24)
-Compiling module xil_defaultlib.sum1b
-Compiling module xil_defaultlib.mul1b
-Compiling module xil_defaultlib.step(N=24)
-Compiling module xil_defaultlib.parallel_shift(DELAY=1,WIDTH=23)
-Compiling module xil_defaultlib.shift(DELAY=23)
-Compiling module xil_defaultlib.shift(DELAY=22)
-Compiling module xil_defaultlib.shift(DELAY=2)
-Compiling module xil_defaultlib.shift(DELAY=21)
-Compiling module xil_defaultlib.shift(DELAY=3)
-Compiling module xil_defaultlib.shift(DELAY=20)
-Compiling module xil_defaultlib.shift_default
-Compiling module xil_defaultlib.shift(DELAY=19)
-Compiling module xil_defaultlib.shift(DELAY=5)
-Compiling module xil_defaultlib.shift(DELAY=18)
-Compiling module xil_defaultlib.shift(DELAY=6)
-Compiling module xil_defaultlib.shift(DELAY=17)
-Compiling module xil_defaultlib.shift(DELAY=7)
-Compiling module xil_defaultlib.shift(DELAY=16)
-Compiling module xil_defaultlib.shift(DELAY=8)
-Compiling module xil_defaultlib.shift(DELAY=15)
-Compiling module xil_defaultlib.shift(DELAY=9)
-Compiling module xil_defaultlib.shift(DELAY=14)
-Compiling module xil_defaultlib.shift(DELAY=10)
-Compiling module xil_defaultlib.shift(DELAY=13)
-Compiling module xil_defaultlib.shift(DELAY=11)
-Compiling module xil_defaultlib.shift(DELAY=12)
-Compiling module xil_defaultlib.mul(N=24)
-Compiling module xil_defaultlib.mantissa_divider
-Compiling module xil_defaultlib.normalizer
-Compiling module xil_defaultlib.rounding
-Compiling module xil_defaultlib.mul_div
-Compiling module xil_defaultlib.exception_block
-Compiling module xil_defaultlib.flags_block
-Compiling module xil_defaultlib.FPU
-Compiling module xil_defaultlib.FPU_tb
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot FPU_tb_behav
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
