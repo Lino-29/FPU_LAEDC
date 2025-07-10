@@ -1,0 +1,27 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/flags_block.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/exception_block.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/rounding.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/normalizer.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/mantissa_divider.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/sum1b.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/mul1b.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/step.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/flipflop.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/shift.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/parallel_shift.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/mul.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/exponent_logic.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/sign_logic_muldiv.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/mul_div.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/normalize_rounder.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/mantissa_add_sub.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/mantissa_shifter.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/exponent_sub_upd.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/sign_logic.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/add_sub_main.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/FPU.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/verif/FPU_tb.v
