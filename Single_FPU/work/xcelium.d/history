@@ -2,5 +2,8 @@
 // File created by:  xrun
 // Do not modify this file
 
-s1::(10Jul2025:20:30:52):( xrun -f list.f -l ./logs/comp.log +define+alfacen_noaxi_base_test+ -access +rwc -seed num_seed -timescale 1ns/1ps -sv )
-s2::(10Jul2025:20:42:53):( xrun -f list.f -l ./logs/comp.log +define+alfacen_noaxi_base_test+ -access +rwc -seed num_seed -timescale 1ns/1ps -sv )
+s1::(11Jul2025:18:45:26):( xrun -f list.f -l ./logs/comp.log +define+alfacen_noaxi_base_test+ -access +rwc -seed num_seed -timescale 1ns/1ps -sv )
+s2::(11Jul2025:18:54:18):( xrun -f list.f -l ./logs/comp.log +define+alfacen_noaxi_base_test+ -access +rwc -seed num_seed -timescale 1ns/1ps -sv )
+s3::(11Jul2025:18:58:50):( xrun -f list.f -l ./logs/comp.log +define+alfacen_noaxi_base_test+ -access +rwc -seed num_seed -timescale 1ns/1ps -sv )
+s4::(11Jul2025:18:59:06):( xrun -f list.f -l ./logs/comp.log +define+alfacen_noaxi_base_test+ -access +rwc -seed num_seed -timescale 1ns/1ps -sv )
+s5::(11Jul2025:18:59:32):( xrun -f list.f -l ./logs/comp.log +define+alfacen_noaxi_base_test+ -access +rwc -seed num_seed -timescale 1ns/1ps -sv )

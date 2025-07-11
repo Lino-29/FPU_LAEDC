@@ -32,4 +32,6 @@
 ../rtl/FPU.v
 
 # TB
-../verif/FPU_tb.v
+
+../verif/FPU_interface.sv
+../verif/FPU_tb.sv

@@ -27,7 +27,8 @@
 ../rtl/sign_logic.v
 ../rtl/add_sub_main.v
 ../rtl/FPU.v
-../verif/FPU_tb.v
+../verif/FPU_interface.sv
+../verif/FPU_tb.sv
 -DEFINE
 alfacen_noaxi_base_test
 -sv

@@ -24,4 +24,5 @@
 /home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/sign_logic.v
 /home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/add_sub_main.v
 /home/joc/C2_25/FPU_LAEDC/Single_FPU/rtl/FPU.v
-/home/joc/C2_25/FPU_LAEDC/Single_FPU/verif/FPU_tb.v
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/verif/FPU_interface.sv
+/home/joc/C2_25/FPU_LAEDC/Single_FPU/verif/FPU_tb.sv
