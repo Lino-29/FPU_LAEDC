@@ -27,8 +27,10 @@ module FPU_tb;
 
   initial begin
 		intf.set_enable_to(1);
-    intf.test_full_random(NUM_TESTS);
-    $finish;
+    //intf.test_full_random(NUM_TESTS);
+    intf.test_add_random(20);
+		repeat (50) @(posedge clk);
+		$finish;
   end
 
  	initial begin

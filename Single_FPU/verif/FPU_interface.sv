@@ -37,7 +37,20 @@ interface FPU_interface (input logic clk);
     std::randomize(temp);
     B = {1'b0, temp[30:23] != 8'hFF ? temp[30:23] : 8'hFE, temp[22:0]};
   endfunction
-  
+/*
+  function automatic randomize_normal_a();
+    bit [31:0] temp;
+    std::randomize(temp);
+    A = {1'b0, temp[30:23] >= 8'h80 ? temp[30:23] : 8'h80, temp[22:0]};
+  endfunction
+
+  function automatic randomize_normal_b();
+    bit [31:0] temp;
+    std::randomize(temp);
+    B = {1'b0, temp[30:23] >= 8'h80 ? temp[30:23] : 8'h80, temp[22:0]};
+  endfunction
+*/
+
   function automatic randomize_normal_a_greater_b(); 
     bit [31:0] temp_a, temp_b;
     real real_a, real_b;
