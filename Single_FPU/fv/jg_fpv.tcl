@@ -38,9 +38,9 @@ analyze -sv ../rtl/FPU.v
 analyze -sv fv_FPU.sv
 
 #
-#elaborate -bbox_a 65535 -bbox_mul 65535 -top FPU
-#
-#clock clk
-#
-#reset -expression arst
-#set_engineJ_max_trace_length 2000
+elaborate -bbox_a 65535 -bbox_mul 65535 -top FPU
+
+clock clk
+
+reset -expression arst
+set_engineJ_max_trace_length 5000

@@ -33,6 +33,6 @@
 
 # TB
 
-#../verif/old_tb.v
-../verif/FPU_interface.sv
-../verif/FPU_tb.sv
+../verif/old_tb.v
+#../verif/FPU_interface.sv
+#../verif/FPU_tb.sv

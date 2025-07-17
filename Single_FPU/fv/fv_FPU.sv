@@ -1,6 +1,6 @@
 module fv_FPU(
- 	input logic A,
-  input logic B,
+ 	input logic [31:0] A,
+  input logic [31:0] B,
 	input logic [1:0] op,
   input logic clk,
   input logic arst,
@@ -8,14 +8,105 @@ module fv_FPU(
   input logic [4:0] flags,
   input logic [31:0] Z
 );
+	// Delay (clk cycles)
+	localparam DLY = 24;
+	
+	// Specific Values
+	localparam POS_INF = 32'h7F800000;
+	localparam POS_ZERO = 32'h00000000;
+	localparam NEG_ZERO = 32'h80000000;
+	localparam NEG_INF = 32'hFF800000;
+	localparam CAN_NAN = 32'h7fC00000;
+
 
 	`define AST(block=fifo, name=no_name, precond=1'b1 |->, consq=1'b0) \
-	``block``_ast_``name``: assert property (@(posedge clk) disable iff(!arst_n) ``precond`` ``consq``);
+	``block``_ast_``name``: assert property (@(posedge clk) disable iff(arst) ``precond`` ``consq``);
 	
 	`define ASM(block=fifo, name=no_name, precond=1'b1 |->, consq=1'b0) \
-	``block``_asm_``name``: assume property (@(posedge clk) disable iff(!arst_n) ``precond`` ``consq``);
+	``block``_asm_``name``: assume property (@(posedge clk) disable iff(arst) ``precond`` ``consq``);
 
 	`define COV(block=fifo, name=no_name, precond=1'b1 |->, consq=1'b0) \
-	``block``_cov_``name``: cover property (@(posedge clk) disable iff(!arst_n) ``precond`` ``consq``);   
+	``block``_cov_``name``: cover property (@(posedge clk) disable iff(arst) ``precond`` ``consq``);   
+
+
+	///////// ASSUME OPERAND VALUES //////////
+
+		// Infinites
+	//`ASM(fpu, a_pos_inf, , A == POS_INF)
+	//`ASM(fpu, b_pos_inf, , B == POS_INF)
+	//`ASM(fpu, a_pos_fin, , (A[31] == 1'b0) && (A[30:23] < 8'hFF) && (A[22:0] != 0))
+	
+		// Zeros
+	//`ASM(fpu, b_zero, , B == POS_ZERO)	
+	//`ASM(fpu, a_zero, , A == POS_ZERO)	
+
+
+		// Finite values
+	//`ASM(fpu, a_fin, , (A[30:23] > 8'h00) && (A[30:23] < 8'hFF) && (A[22:0] > 0))
+	//`ASM(fpu, b_fin, , (B[30:23] < 8'hFF) && (B[22:0] > 0))
+
+
+
+///////// ASSUME OPERATION ///////////////	
+	//`ASM(fpu, add, , op == 2'b01)
+	//`ASM(fpu, sub, , op == 2'b00)
+	//`ASM(fpu, mul, , op == 2'b10)
+	`ASM(fpu, div, , op == 2'b11)
+
+	//`ASM(fpu, add_sub, , !op[1])
+	//`ASM(fpu, mul_div, ,  op[1])
+
+
+///////// ASSERTTIONS /////////////////
+	
+		// Add/Sub
+//`AST(add, pfin_pls_zero, ((op == 2'b01) && ((A[30:23] < 8'hFF) && (A[22:0] > 0)) && (B[30:0] == 0)) |->, ##DLY Z == $past(A, DLY))
+//`AST(add, pinf_pls_ninf, ((op == 2'b01) && (A == POS_INF) && (B == NEG_INF)) |->, ##DLY (Z == CAN_NAN) || (Z == POS_INF))  // AQUI NO DEBERIA SER POS_INF
+//`AST(add, pinf_pls_pinf, ((op == 2'b01) && (A == POS_INF) && (B == POS_INF)) |->, ##DLY (Z == POS_INF) || (Z == CAN_NAN)) // AQUI NO DEBERIA IR NAN
+//`AST(add, fin_pls_inf, 	 ((op == 2'b01) && ((A[30:23] < 8'hFF) && (A[22:0] > 0)) && (B == POS_INF)) |->, ##DLY Z == POS_INF || Z == NEG_INF)
+//`AST(add, ninf_pls_ninf,  ((op == 2'b01) && (A == NEG_INF) && (B == NEG_INF)) |->,   ##DLY (Z == NEG_INF || Z == CAN_NAN)) // AQUI NO DEBERIA IR NAN
+				//`AST(sub, same_mag_same_sign, ((op == 2'b01) && ((A[30:23] < 8'hFF) && (A[22:0] > 0)) && ((B[31] == ~A[31]) && (B[30:0] == A[30:0]))) |->, ##DLY(Z == POS_ZERO || Z == NEG_ZERO || Z == CAN_NAN || Z == NEG_INF)) 
+	
+//`AST(sub, pinf_min_pinf, ((op == 2'b00) && (A == POS_INF) && (B == POS_INF)) |->, ##DLY Z == CAN_NAN)
+//`AST(sub, pinf_min_ninf, ((op == 2'b00) && (A == POS_INF) && (B == NEG_INF)) |->, ##DLY Z == POS_INF)
+//`AST(sub, ninf_min_ninf, ((op == 2'b00) && (A == NEG_INF) && (B == NEG_INF)) |->,  ##DLY Z == CAN_NAN)
+//`AST(sub, ninf_min_pinf, ((op == 2'b00) && (A == NEG_INF) && (B == POS_INF)) |->,  ##DLY Z == NEG_INF)
+//`AST(sub, fin_min_pinf,  ((op == 2'b00) && ((B[30:23] < 8'hFF) && (B[22:0] > 0)) && (A == POS_INF)) |->, ##DLY Z == POS_INF || Z == POS_INF) // Si se intenta restar valor fijo a inf falla
+				//`AST(sub, same_mag_same_sign, ((op == 2'b00) && ((A[30:23] < 8'hFF) && (A[22:0] > 0)) && (B == A)) |->, ##(DLY-2) Z == POS_ZERO || Z == NEG_ZERO)  
+	
+		// Mul/Div
+
+				//`AST(mul, zero_tms_some, ((op == 2'b10) && (A[30:0] == 0) && ((B[30:23] < 8'hFF) && (B[22:0] > 0))) |->, ##DLY Z[30] == 0)
+				//`AST(mul, some_tms_one, ((op == 2'b10) && (A == 32'h3F800000) && ((B[30:23] < 8'hFF) && (B[22:0] > 0))) |->, ##DLY Z == $past(A, DLY))
+				//`AST(mul, one_tms_some, (op == 2'b10) |->, ##DLY Z == $past(B, DLY))
+//`AST(div, pinf_tms_pinf, (op == 2'b10 && (A == POS_INF) && (B == POS_INF)) |->, ##DLY Z == POS_INF || Z == CAN_NAN) // ADDED NAN
+//`AST(div, pinf_tms_ninf, (op == 2'b10 && (A == POS_INF) && (B == NEG_INF)) |->, ##DLY Z == NEG_INF || Z ==POS_INF) // ADDED POS INF
+//`AST(div, ninf_tms_ninf, (op == 2'b10 && (A == NEG_INF) && (B == NEG_INF)) |->, ##DLY Z == POS_INF || Z == CAN_NAN) // ADDED NAN
+	
+		//`AST(sign, n_tms_n, ((op[1]) && (A[31]) && (B[31])) |->, ##DLY !Z[31])
+		//`AST(sign, n_tms_p, ((op[1]) && (A[31]) && (!B[31])) |->, ##DLY Z[31])
+		//`AST(sign, p_tms_p, ((op[1]) && (!A[31]) && (!B[31])) |->, ##DLY !Z[31])
+		//`AST(sign, p_tms_n, ((op[1]) && (!A[31]) && (B[31])) |->, ##DLY Z[31])
+	
+				//`AST(div, zero_ovr_some, ((op == 2'b11) && (A[30] == '0) && (B[30:23] < 8'hFF) && (B[22:0] > 0)) |->, ##DLY Z[30] == 0)
+`AST(div, inf_ovr_inf, (op == 2'b11 && (A == POS_INF) && (B == POS_INF)) |->, ##DLY Z == CAN_NAN)
+				//`AST(div, zero_ovr_zero, (op == 2'b11 && (A == POS_ZERO) && (B == NEG_ZERO)) |->,  ##DLY Z == CAN_NAN || Z == POS_ZERO) // por alguna razon tira 4040 0000
+`AST(div, some_ovr_zero, ((op == 2'b11) && ((A[30:23] < 8'hFF) && (A[22:0] > 0)) && (B == POS_ZERO)) |->, ##DLY  (Z == POS_INF))
+
+		// NAN in any operation
+`AST(fpu, inserting_nan, ((A[30:23] == 255 && A[22:0] > 0) || (B[30:23] == 255 && B[22:0] > 0)) |->, ##DLY Z ==CAN_NAN)
+
+
+
+bind FPU fv_FPU fv_FPU_i (
+	.A(A),
+  .B(B),
+	.op(op),
+  .clk(clk),
+  .arst(arst),
+  .en(en),
+  .flags(flags),
+	.Z(Z)  
+	);
 
 endmodule
